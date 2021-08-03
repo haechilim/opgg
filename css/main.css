@@ -1,0 +1,157 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.topContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 49rem;
+    height: 5rem;
+    margin-bottom: 2rem;
+    border: #ebeef1 solid 0.1rem;
+    padding: 0.5rem;
+}
+
+.topContainer .head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.topContainer .searchContainer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.topContainer .searchContainer .select {
+    width: 6rem;
+    height: 2.5rem;
+    border-color: #ebeef1;
+    color: #7b858e;
+    padding-left: 0.3rem;
+    border-radius: 0.3rem 0rem 0rem 0.3rem;
+}
+
+.topContainer .searchContainer .search {
+    background: url(../image/search.png);
+    background-repeat: no-repeat;
+    background-size: 1.6rem;
+    background-position: 10.7rem 0.5rem;
+    background-color: #ebeef1;
+    width: 9rem;
+    border: none;
+    padding: 0.5rem 3rem 0.5rem 1rem;
+    border-radius: 0rem 0.3rem 0.3rem 0rem;
+}
+
+.topContainer .head .text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0rem;
+}
+
+.topContainer .head .writeButton {
+    background-image: url(../image/write.png);
+    background-size: 2rem 2rem;
+    background-color: #ffffff;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+}
+
+.list {
+    width: 50rem;
+}
+
+.list .post {
+    display: flex;
+    flex-direction: row;
+    border: #ebeef1 solid 0.1rem;
+}
+
+.list .post .recommendationContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    margin: 1rem;
+}
+
+.list .post .recommendationContainer .image {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.list .post .recommendationContainer .recommendation {
+    color: #7b858e;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.list .post .postInformation {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 1rem;
+    margin-left: 1rem;
+}
+
+.list .post .postInformation .titleContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 45rem;
+    height: 1.5rem;
+}
+
+.list .post .postInformation .titleContainer .title {
+    margin-right: 0.4rem;
+}
+
+.list .post .postInformation .titleContainer .comment {
+    color: #16ae81;
+}
+
+.list .post .postInformation .writerContainer {
+    display: flex;
+    flex-direction: row;   
+}
+
+.list .post .postInformation .writerContainer .type {
+    color: #7b858e;
+    font-size: 0.9rem;
+    padding-right: 1rem;
+}
+
+.list .post .postInformation .writerContainer .time {
+    color: #7b858e;
+    font-size: 0.9rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-left: 0.1rem solid #ebeef1;
+    border-right: 0.1rem solid #ebeef1;
+}
+
+.list .post .postInformation .writerContainer .writer {
+    display: flex;
+    flex-direction: row;
+    padding-left: 1rem;
+}
+
+.list .post .postInformation .writerContainer .writer .image {
+    width: 1.3rem;
+    height: 1.3rem;
+}
+
+.list .post .postInformation .writerContainer .writer .name {
+    color: #7b858e;
+    font-size: 0.9rem;
+    padding-left: 0.3rem;
+}

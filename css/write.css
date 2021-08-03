@@ -1,0 +1,196 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    border: 0.1rem solid #ebeef1;
+    padding: 1rem;
+}
+
+.text {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 0rem;
+}
+
+.postType {
+    margin-top: 2rem;
+    border: 0.1rem solid #ebeef1;
+    width: 9rem;
+    height: 3rem;
+    font-size: 1rem;
+    padding-left: 0.5rem;
+    border-radius: 0.3rem;
+}
+
+.inputTitle {
+    height: 2rem;
+    padding: 0.1rem 1rem 0.1rem 1rem;
+    font-size: 1rem;
+    border: 0.1rem solid #ebeef1;
+    margin-top: 1.5rem;
+}
+
+.inputLink {
+    background-image: url(../image/link.png);
+    background-repeat: no-repeat;
+    background-size: 1.8rem 1.8rem;
+    background-position: 0.5rem 0.2rem;
+    height: 2rem;
+    padding: 0.1rem 1rem 0.1rem 3rem;
+    font-size: 1rem;
+    border: 0.1rem solid #ebeef1;
+    margin-top: 0.5rem;
+    background-color: #f8f9fa;
+}
+
+.contentsContainer {
+    display: flex;
+    flex-direction: column;
+    border: 0.1rem solid #ebeef1;
+    margin-top: 1rem;
+}
+
+.contentsContainer .toolbar {
+    display: flex;
+    flex-direction: row;
+    height: 2rem;
+    border-bottom: 0.1rem solid #ebeef1;
+    padding: 0rem 2.5rem 0rem 2.5rem;
+}
+
+.contentsContainer .contents {
+    height: 30rem;
+    padding: 1rem 2.5rem 0rem 2.5rem;
+    resize: none;
+    border: none;
+}
+
+.contentsContainer .toolbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.contentsContainer .toolbar button {
+    background-image: url(../image/tools.png);
+    background-color: #ffffff;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: none;
+}
+
+.toolbar .title {
+    background-position: 87.5% 28%;
+}
+
+.toolbar .weight {
+    background-position: 1% 1%;
+}
+
+.toolbar .italic {
+    background-position: 1% 28%;
+}
+
+.toolbar .color {
+    background-position: 87.5% 41%;
+}
+
+.toolbar .strike {
+    background-position: 1% 14.5%;
+}
+
+.toolbar .hrline {
+    background-position: 22.5% 54%;
+}
+
+.toolbar .quote {
+    background-position: 1% 68%;
+}
+
+.toolbar .ul {
+    background-position: 22.5% 1%;
+}
+
+.toolbar .ol {
+    background-position: 22.5% 14%;
+}
+
+.toolbar .checkbox {
+    background-position: 65.5% 28%;
+}
+
+.toolbar .indent {
+    background-position: 22.5% 28%;
+}
+
+.toolbar .outdent {
+    background-position: 22.5% 41%;
+}
+
+.toolbar .table {
+    background-position: 44% 54.5%;
+}
+
+.toolbar .image {
+    background-position: 66% 1%;
+}
+
+.toolbar .link {
+    background-position: 66% 14%;
+}
+
+.toolbar .code {
+    background-position: 66% 54.5%;
+}
+
+.toolbar .codeblock {
+    background-position: 66% 41%;
+}
+
+.previewOptionContainer {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem 3rem 1rem 3rem;
+    margin-top: 1rem;
+    border: 0.1rem solid #ebeef1;
+}
+
+.previewOptionContainer .checkBox {
+    float: left;
+    position: absolute;
+    left: 31rem;
+    top: 51.6rem
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    width: 52%;
+    margin-top: 1rem;
+}
+
+.buttonContainer .cencle {
+    background-color: #ffffff;
+    border: 0.1rem solid #ebeef1;
+    padding: 0.8rem 3.3rem 0.8rem 3.3rem;
+    font-size: 1rem;
+    color: #7b858e;
+    border-radius: 5%;
+}
+
+.buttonContainer .write {
+    background-color: #46cfa7;
+    border: 0.1rem solid #ebeef1;
+    padding: 0.8rem 3.3rem 0.8rem 3.3rem;
+    font-size: 1rem;
+    color: #ffffff;
+    border-radius: 5%;
+}

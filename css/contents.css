@@ -1,0 +1,336 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    border: 0.1rem solid #ebeef1;
+}
+
+.mainContainer .topContainer {
+    border-bottom: 0.1rem solid #ebeef1;
+    padding: 1rem;
+}
+
+.mainContainer .topContainer .title {
+    font-weight: normal;
+    margin: 0rem;
+}
+
+.mainContainer .postInfomationContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.infomations {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 0rem;
+    margin: 0.5rem 0rem 1rem 0rem;
+    color: #98a0a7;
+}
+
+.infomations .writer {
+    display: flex;
+    flex-direction: row;
+}
+
+.infomations .writer .level {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.infomations .writer .name {
+    padding-left: 0.2rem;
+}
+
+.infomations .paddingRight {
+    padding-right: 0.5rem;
+}
+
+.infomations .paddingSide {
+    padding: 0rem 0.5rem;
+}
+
+.infomations .paddingLeft {
+    padding-left: 0.5rem;
+}
+
+.infomations .borderSide {
+    border-right: 0.1rem solid #ebeef1;
+    border-left: 0.1rem solid #ebeef1;
+}
+
+.infomations .borderLeft {
+    border-left: 0.1rem solid #ebeef1;
+}
+
+.mainContainer .contentsContainer {
+    height: 30rem;
+    border-bottom: 0.1rem solid #ebeef1;
+    padding: 1rem;
+}
+
+.mainContainer .recommendationContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0rem;
+}
+
+.mainContainer .recommendationContainer .recommendation {
+    background: url(../image/recommendation.png);
+    background-size: 1rem 1rem;
+    background-repeat: no-repeat;
+    background-position: 1rem 0.9rem;
+    border: 0.1rem solid #ebeef1;
+    border-radius: 10%;
+    width: 6rem;
+    height: 3rem;
+    padding-left: 1.3rem;
+}
+
+.mainContainer .recommendationContainer .decommendation {
+    background: url(../image/decommendation.png);
+    background-size: 1.1rem 1.1rem;
+    background-repeat: no-repeat;
+    background-position: 1rem 0.8rem;
+    border: 0.1rem solid #ebeef1;
+    border-radius: 10%;
+    width: 6rem;
+    height: 3rem;
+    padding-left: 1.3rem;
+    margin: 0rem 1rem;
+}
+
+.mainContainer .recommendationContainer .ward {
+    background: url(../image/ward.png);
+    background-size: 1rem 1rem;
+    background-repeat: no-repeat;
+    background-position: 0.9rem 1rem;
+    border: 0.1rem solid #ebeef1;
+    border-radius: 10%;
+    width: 3rem;
+    height: 3rem;
+}
+
+.commentContainer {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    border: 0.1rem solid #ebeef1;   
+    margin-top: 2rem;
+}
+
+.commentContainer .topContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 0.1rem solid #ebeef1;
+    padding: 1rem;
+}
+
+.commentContainer .topContainer .span {
+    margin-left: 0.2rem;
+    color: #98a0a7;
+}
+
+.commentContainer .topContainer .span .title {
+    display: inline;
+    font-size: 1.4rem;
+    margin: 0rem;
+    color: #000000;
+}
+
+.commentContainer .topContainer .number {
+    color: #16ae81;
+}
+
+.commentContainer .topContainer .refresh {
+    width: 5rem;
+    height: 2rem;
+    font-size: 1rem;
+    border: none;
+    background-color: #ffffff;
+    color: #98a0a7;
+}
+
+.commentContainer .writeContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa;
+    padding: 1rem;
+}
+
+.commentContainer .writeContainer .writeComments {
+    height: 5rem;
+    border: 0.1rem solid #ebeef1;
+    padding: 2rem 1rem 2rem 1rem;
+    resize: none;
+}
+
+.commentContainer .writeContainer .writeCommentsFooter {
+    display: flex;
+    flex-direction: row;
+}
+
+.commentContainer .writeCommentsFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: 2.5rem;
+    border-right: 0.1rem solid #ebeef1;
+    border-left: 0.1rem solid #ebeef1;
+    border-bottom: 0.1rem solid #ebeef1;
+}
+
+.commentContainer .writeCommentsFooter .insertPhotoLabel {
+    background: url(../image/photo.png);
+    background-repeat: no-repeat;
+    background-size: 1.2rem 1.2rem;
+    background-position: 1rem;
+    padding-left: 0.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6rem;
+    border: none;
+    background-color: #ffffff;
+    color: #98a0a7;
+}
+
+.commentContainer .writeCommentsFooter .insertPhoto {
+    display: none;
+}
+
+.commentContainer .writeCommentsFooter .length {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 45rem;
+    padding-right: 0.5rem;
+    background-color: #ffffff;
+    color: #98a0a7;
+}
+
+.commentContainer .writeCommentsFooter .write {
+    width: 10%;
+    border: none;
+    background-color: #46cfa7;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.commentContainer .sortTypesContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 3.5rem;
+    padding: 0rem 1.5rem;
+    border-bottom: 0.1rem solid #ebeef1;
+}
+
+.commentContainer .sortTypesContainer .popularity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 3rem;
+    color: #16ae81;
+    border-bottom: 0.3rem solid #16ae81;
+    border-top: 0.3rem solid #ffffff;
+    margin-right: 1rem;
+}
+
+.commentContainer .sortTypesContainer .last {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 3rem;
+    color: #000000;
+    border-bottom: 0.3rem solid #ffffff;
+    border-top: 0.3rem solid #ffffff;
+    margin-right: 1rem;
+}
+
+.commentContainer .comment {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 0.1rem solid #ebeef1;
+}
+
+.commentContainer .comment .mainComment {
+    display: flex;
+    flex-direction: row;
+}
+
+.commentContainer .comment .mainComment .recommendation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0rem 1.5rem;
+    height: 7rem;
+}
+
+.commentContainer .comment .mainComment .recommendation .button1 {
+    background: url(../image/recommendation.png);
+    background-repeat: no-repeat;
+    background-size: 1.2rem 1.2rem;
+    background-position: 0.4rem 0.7rem;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+}
+
+.commentContainer .comment .mainComment .recommendation .button2 {
+    background: url(../image/decommendation.png);
+    background-repeat: no-repeat;
+    background-size: 1.2rem 1.2rem;
+    background-position: 0.4rem 0.3rem;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+}
+
+.commentContainer .comment .mainComment .main {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 0rem;
+    margin-bottom: 0.7rem;
+}
+
+.footer .declaration {
+    margin-right: 1rem;
+    color: #98a0a7;
+}
+
+.footer .writeCommentInComment {
+    background: url(../image/commentInComment.png);
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+    background-position: 0.3rem 0.3rem;
+    padding-left: 1.5rem;
+    color: #98a0a7;
+}
+
+.commentContainer .comment .commentInComment {
+    background-color: #f8f9fa;
+    border-top: 0.1rem solid #ebeef1;
+    padding-left: 7rem;
+}

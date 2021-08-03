@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OP.GG</title>
+
+    <link rel="stylesheet" href="css/write.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text">글쓰기</h1>
+
+        <select class="postType">
+            <option>OP.GG 기획</option>
+            <option>유저 뉴스</option>
+            <option>팁과 노하우</option>
+            <option>자유</option>
+            <option>유머</option>
+            <option>영상</option>
+            <option>유저 찾기</option>
+            <option>사건 사고</option>
+            <option>팬 아트</option>
+        </select>
+
+        <input class="inputTitle" type="text" placeholder="제목">
+        <input class="inputLink" type="text" placeholder="동영상 또는 사이트 링크를 입력해주세요. (선택)">
+        <div class="contentsContainer">
+            <div class="toolbar">
+                <button  class="title"></button >
+                <button  class="weight"></button >
+                <button  class="italic"></button >
+                <button  class="color"></button >
+                <button  class="strike"></button >
+                <button  class="hrline"></button >
+                <button  class="quote"></button >
+                <button  class="ul"></button >
+                <button  class="ol"></button >
+                <button  class="checkbox"></button >
+                <button  class="indent"></button >
+                <button  class="outdent"></button >
+                <button  class="table"></button >
+                <button  class="image"></button >
+                <button  class="link"></button >
+                <button  class="code"></button >
+                <button  class="codeblock"></button >
+            </div>
+            <textarea class="contents"></textarea>
+        </div>
+
+        <div class="previewOptionContainer">
+            <img class="checkBox" src="image/checkBox.png"></img>
+            <div>이미지(Thumbnail) 미리보기 허용</div>
+        </div>
+    </div>
+
+    <div class="buttonContainer">
+        <button class="cencle">취소</button>
+        <button class="write">작성완료</button>
+    </div>
+</body>
+</html>
