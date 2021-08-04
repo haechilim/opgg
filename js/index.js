@@ -1,8 +1,6 @@
 const Server = require('./manager/server');
-const DatabaseManager = require('./manager/databaseManager');
 
 const server = new Server();
-const databaseManager = new DatabaseManager();
 
 server.createServer();
 
