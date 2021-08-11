@@ -73,6 +73,10 @@ body {
     border: #ebeef1 solid 0.1rem;
 }
 
+.list .post:hover {
+    background-color: #f8f9fa;
+}
+
 .list .post .recommendationContainer {
     display: flex;
     flex-direction: column;
@@ -154,4 +158,42 @@ body {
     color: #7b858e;
     font-size: 0.9rem;
     padding-left: 0.3rem;
+}
+
+.pageContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 30rem;
+    margin-top: 2rem;
+}
+
+.pageContainer .pageBefore {
+    width: 5rem;
+    height: 2.5rem;
+    background-image: url(/image/pageLeft.png);
+    background-repeat: no-repeat;
+    background-size: 1.5rem 1.5rem;
+    background-position: 0.2rem 0.5rem;
+    background-color: #ffffff;
+    border: 0.1rem solid #ebeef1;
+    color: #7b858e;
+    padding-left: 1rem;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+}
+
+.pageContainer .pageNext {
+    width: 5rem;
+    height: 2.5rem;
+    background-image: url(/image/pageRight.png);
+    background-repeat: no-repeat;
+    background-size: 1.5rem 1.5rem;
+    background-position: 3rem 0.5rem;
+    background-color: #ffffff;
+    border: 0.1rem solid #ebeef1;
+    color: #7b858e;
+    padding-right: 1rem;
+    border-radius: 0.3rem;
+    font-size: 1rem;
 }
