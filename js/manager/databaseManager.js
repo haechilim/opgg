@@ -20,7 +20,19 @@ class DatabaseManager {
         this.connection.end();
     }
 
-    getPosts(limit, offset, callback) {
+    getPosts(limit, offset, sort, callback) {
+        let sortQuery;
+
+        switch(sort) {
+            case "new":
+                sortQuery = "p.dateTime";
+                break;
+            
+            case "top":
+                sortQuery = "(p.like - p.dislike)";
+                break;
+        }
+
         const query = "select p.id, p.title, p.like, p.dislike, p.dateTime, " +
         "m.name as mname, m.level as mlevel, " +
         "c.name as category, " +
@@ -30,7 +42,7 @@ class DatabaseManager {
         "on p.member = m.id " +
         "left join category as c " +
         "on p.category = c.id " +
-        "order by p.dateTime desc " +
+        "order by " + sortQuery + " desc " +
         "limit " + limit + " offset " + offset + ";"
 
         this.query(query, callback);
@@ -49,6 +61,10 @@ class DatabaseManager {
         "where p.id = " + postId + ";"
 
         this.query(query, callback);
+    }
+
+    getPostsCount(callback) {
+        this.query('select count(*) as count from opgg.post;', callback);
     }
     
     getComments(postId, callback) {

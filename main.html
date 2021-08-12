@@ -16,17 +16,24 @@
             <button class="writeButton">
         </div>
 
-        <div class="searchContainer">
-            <select class="select">
-                <option>제목</option>
-                <option>작성자</option>
-            </select>
-            <input class="search" type="text" placeholder="검색">
+        <div class="footer">
+            <div class="sortCategory">
+                <button id="new">최신</button>
+                <button id="top">TOP</button>
+            </div>
+
+            <div class="searchContainer"> 
+                <select class="select">
+                    <option>제목</option>
+                    <option>작성자</option>
+                </select>
+                <input class="search" type="text" placeholder="검색">
+            </div>
         </div>
     </div>
 
     <div class="list">
-        <div class="post">
+        <!-- <div class="post">
             <div class="recommendationContainer">
                 <img class="image" src="image/recommendation.png"/>
                 <div class="recommendation">1462</div>
@@ -70,12 +77,17 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div class="pageContainer">
-        <button class="pageBefore">이전</button>
-        <button class="pageNext">다음</button>
+        <button id="pageBefore" class="pageBefore">이전</button>
+        <div id="pageButtonContainer" class="pageButtonContainer">
+            <!-- <button class="pageButton currentPage"><a href="">1</a></button>
+            <button class="pageButton">2</button>
+            <button class="pageButton">3</button> -->
+        </div>
+        <button id="pageNext" class="pageNext">다음</button>
     </div>
 </body>
 </html>

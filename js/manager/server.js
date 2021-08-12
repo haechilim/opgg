@@ -12,18 +12,24 @@ class Server {
 
     createServer() {
         http.createServer((request, response) => {
+            console.log(request.url);
+
             let pathname = this.getPathname(request.url);
             let parameter = this.getParameters(request.url);
-            
-            console.log(pathname);
 
             switch(pathname) {
                 case "/list":
-                    this.databaseManager.getPosts(parameter.limit, parameter.offset, (error, result) => {
+                    this.databaseManager.getPosts(parameter.limit, parameter.offset, parameter.sort, (error, result) => {
                         if(error) console.log(error);
                         else this.jsonResponse(response, result);
                     });
                     break;
+
+                case "/count":
+                    this.databaseManager.getPostsCount((error, result) => {
+                        if(error) console.log(error);
+                        else this.jsonResponse(response, result);
+                    })
 
                 case "/contents":
                     this.databaseManager.getPost(parameter.id, (error, result) => {
