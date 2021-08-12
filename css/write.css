@@ -1,4 +1,4 @@
-body {
+.body {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,6 +34,7 @@ body {
     font-size: 1rem;
     border: 0.1rem solid #ebeef1;
     margin-top: 1.5rem;
+    outline: none;
 }
 
 .inputLink {
@@ -47,6 +48,7 @@ body {
     border: 0.1rem solid #ebeef1;
     margin-top: 0.5rem;
     background-color: #f8f9fa;
+    outline: none;
 }
 
 .contentsContainer {
@@ -69,6 +71,7 @@ body {
     padding: 1rem 2.5rem 0rem 2.5rem;
     resize: none;
     border: none;
+    outline: none;
 }
 
 .contentsContainer .toolbar {

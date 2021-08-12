@@ -4,13 +4,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function init() {
     updateContents();
+    bindEvents();
 }
 
 function updateContents() {
     request("/contents?id=" + getParameters().id, (contents) => {
         console.log(contents[0]);
         drawContents(contents[0]);
+        resizeContentsContainer();
     });
+}
+
+function bindEvents() {
+    window.addEventListener("resize", () => {
+        resizeContentsContainer();
+    });
+}
+
+function resizeContentsContainer() {
+    const contentsContainer = document.getElementById("contentsContainer");
+
+    contentsContainer.style.height = "0px";
+    contentsContainer.style.height = (contentsContainer.scrollHeight) + "px";
 }
 
 function request(url, callback) {
@@ -48,7 +63,7 @@ function drawContents(contents) {
     "            </div>\n" +
     "        </div>\n" +
     "\n" +
-    "        <div class=\"contentsContainer\">" + contents.contents + "</div>\n" +
+    "        <textarea readonly id=\"contentsContainer\" class=\"contentsContainer\">" + contents.contents + "</textarea>\n" +
     "\n" +
     "        <div class=\"recommendationContainer\">\n" +
     "            <button class=\"recommendation\">" + contents.like + "</button>\n" +

@@ -72,9 +72,11 @@ body {
 }
 
 .mainContainer .contentsContainer {
-    height: 30rem;
+    resize: none;
+    border: none;
     border-bottom: 0.1rem solid #ebeef1;
     padding: 1rem;
+    outline: none;
 }
 
 .mainContainer .recommendationContainer {

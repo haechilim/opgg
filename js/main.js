@@ -1,12 +1,11 @@
 const POST_PER_PAGE = 10;
+const sort = getParameters().sort;
 
 document.addEventListener("DOMContentLoaded", function() {
     init();
 });
 
 function init() {
-    const sort = getParameters().sort;
-
     selectedNewSortCategory(sort);
     selectedTopSortCategory(sort);
 
@@ -24,6 +23,10 @@ function updateList() {
 }
 
 function bindEvents() {
+    document.getElementById("writeButton").addEventListener("click", () => {
+        location.href = "write.html";
+    });
+
     document.getElementById("new").addEventListener("click", () => {
         location.href = "main.html?sort=new&page=1";
     });
@@ -33,11 +36,11 @@ function bindEvents() {
     });
 
     document.getElementById("pageBefore").addEventListener("click", () => {
-        location.href = "/main.html?page=" + (parseInt(getParameters().page) - 1);
+        location.href = "/main.html?sort=" + sort + "&page=" + (parseInt(getParameters().page) - 1);
     });
 
     document.getElementById("pageNext").addEventListener("click", () => {
-        location.href = "/main.html?page=" + (parseInt(getParameters().page) + 1);
+        location.href = "/main.html?sort=" + sort + "&page=" + (parseInt(getParameters().page) + 1);
     });
 }
 
@@ -57,13 +60,14 @@ function request(url, callback) {
 function drawPageButton(count) {
     const pageCount = getPageCount(count);
     const currentPage = getParameters().page;
+    console.log(sort);
 
     let html = "";
 
     for(let i = 1; i <= pageCount; i++) {
         let isCurrentPage = (i == currentPage);
 
-        html += "<button class=\"pageButton " + (isCurrentPage ? "currentPage" : "") + "\" >" + (isCurrentPage ? i : "<a href=\"main.html?page=" + i + "\">" + i + "</a>") + "</button>";
+        html += "<button class=\"pageButton " + (isCurrentPage ? "currentPage" : "") + "\" >" + (isCurrentPage ? i : "<a href=\"main.html?sort=" + sort + "&page=" + i + "\">" + i + "</a>") + "</button>";
     }
 
     document.getElementById("pageButtonContainer").innerHTML = html;
