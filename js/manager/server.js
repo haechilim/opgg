@@ -80,7 +80,7 @@ class Server {
 
     response(response, error, result) {
         if(result == undefined) result = {success: (error ? false : true)};
-        error ? console.log(error) : this.jsonResponse(response, result);
+        this.jsonResponse(response, error ? [] : result);
     }
 
     jsonResponse(response, data) {

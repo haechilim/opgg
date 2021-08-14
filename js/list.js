@@ -3,6 +3,10 @@ class List {
 
     constructor() {
         this.sort = this.getParameters().sort;
+        this.page = this.getParameters().page;
+
+        if(this.sort == undefined) this.sort = "new";
+        if(this.page == undefined) this.page = "1";
     }
 
     init() {
@@ -17,7 +21,7 @@ class List {
     }
     
     updateList() {
-        this.request("/api/list?limit=" + List.POST_PER_PAGE + "&offset=" + (this.getParameters().page - 1) * List.POST_PER_PAGE + "&sort=" + this.getParameters().sort, (posts) => {
+        this.request("/api/list?limit=" + List.POST_PER_PAGE + "&offset=" + (this.page - 1) * List.POST_PER_PAGE + "&sort=" + this.sort, (posts) => {
             this.drawPosts(posts);
             this.bindEvents();
         });
@@ -37,11 +41,11 @@ class List {
         });
     
         document.getElementById("pageBefore").addEventListener("click", () => {
-            location.href = "/?sort=" + this.sort + "&page=" + (parseInt(this.getParameters().page) - 1);
+            location.href = "/?sort=" + this.sort + "&page=" + (parseInt(this.page) - 1);
         });
     
         document.getElementById("pageNext").addEventListener("click", () => {
-            location.href = "/?sort=" + this.sort + "&page=" + (parseInt(this.getParameters().page) + 1);
+            location.href = "/?sort=" + this.sort + "&page=" + (parseInt(this.page) + 1);
         });
     }
     
@@ -60,7 +64,7 @@ class List {
     
     drawPageButton(count) {
         const pageCount = this.getPageCount(count);
-        const currentPage = this.getParameters().page;
+        const currentPage = this.page;
     
         let html = "";
     
