@@ -82,42 +82,6 @@ class Server {
         });
     }
 
-    getErrorHtml(error) {
-        return "<!DOCTYPE html>\n" +
-        "<html lang=\"en\">\n" +
-        "<head>\n" +
-        "    <meta charset=\"UTF-8\">\n" +
-        "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
-        "    <title>OP.GG</title>\n" +
-        "\n" +
-        "    <style>\n" +
-        "        html {\n" +
-        "            height: 100%;\n" +
-        "        }\n" +
-        "\n" +
-        "        body {\n" +
-        "            height: 100%;\n" +
-        "            display: flex;\n" +
-        "            justify-content: center;\n" +
-        "            align-items: center;\n" +
-        "        }\n" +
-        "\n" +
-        "        div {\n" +
-        "            font-size: 3rem;\n" +
-        "            font-weight: bold;\n" +
-        "        }\n" +
-        "    </style>\n" +
-        "\n" +
-        "    <script>\n" +
-        (error ? "\n" : "        location.href = \"main.html?sort=new&page=1\";\n") +
-        "    </script>\n" +
-        "</head>\n" +
-        "<body>\n" +
-        "    <div>ERROR: 새 글을 작성할 수 없습니다.</div>\n" +
-        "</body>\n" +
-        "</html>";
-    }
-
     getPathname(requestUrl) {
         return url.parse(requestUrl).pathname;
     }
