@@ -28,19 +28,19 @@ function bindEvents() {
     });
 
     document.getElementById("new").addEventListener("click", () => {
-        location.href = "main.html?sort=new&page=1";
+        location.href = "list.html?sort=new&page=1";
     });
 
     document.getElementById("top").addEventListener("click", () => {
-        location.href = "main.html?sort=top&page=1";
+        location.href = "list.html?sort=top&page=1";
     });
 
     document.getElementById("pageBefore").addEventListener("click", () => {
-        location.href = "/main.html?sort=" + sort + "&page=" + (parseInt(getParameters().page) - 1);
+        location.href = "/list.html?sort=" + sort + "&page=" + (parseInt(getParameters().page) - 1);
     });
 
     document.getElementById("pageNext").addEventListener("click", () => {
-        location.href = "/main.html?sort=" + sort + "&page=" + (parseInt(getParameters().page) + 1);
+        location.href = "/list.html?sort=" + sort + "&page=" + (parseInt(getParameters().page) + 1);
     });
 }
 
@@ -67,7 +67,7 @@ function drawPageButton(count) {
     for(let i = 1; i <= pageCount; i++) {
         let isCurrentPage = (i == currentPage);
 
-        html += "<button class=\"pageButton " + (isCurrentPage ? "currentPage" : "") + "\" >" + (isCurrentPage ? i : "<a href=\"main.html?sort=" + sort + "&page=" + i + "\">" + i + "</a>") + "</button>";
+        html += "<button class=\"pageButton " + (isCurrentPage ? "currentPage" : "") + "\" >" + (isCurrentPage ? i : "<a href=\"list.html?sort=" + sort + "&page=" + i + "\">" + i + "</a>") + "</button>";
     }
 
     document.getElementById("pageButtonContainer").innerHTML = html;

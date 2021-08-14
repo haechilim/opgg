@@ -32,7 +32,7 @@ function bindEvents() {
             }
             else {
                 request("/write", "category=" + category + "&title=" + encodeURIComponent(title) +"&link=" + link + "&contents=" + encodeURIComponent(contents), (json) => {
-                    if(json.success) location.href = "main.html?sort=new&page=1";
+                    if(json.success) location.href = "list.html?sort=new&page=1";
                     else alert("새 글 작성에 실패하였습니다.");
                 });
             }
