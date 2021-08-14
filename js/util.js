@@ -1,7 +1,7 @@
 class Util {
     constructor() {}
 
-    static request(url, callback) {
+    static request(url, method, send, callback) {
         let xmlHttpRequest = new XMLHttpRequest();
     
         xmlHttpRequest.addEventListener("load", () => {
@@ -10,8 +10,8 @@ class Util {
             if(callback) callback(json);
         });
     
-        xmlHttpRequest.open("GET", url, true);
-        xmlHttpRequest.send();
+        xmlHttpRequest.open(method, url, true);
+        xmlHttpRequest.send(send);
     }
 
     static getParameters() {

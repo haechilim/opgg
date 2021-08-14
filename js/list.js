@@ -4,7 +4,6 @@ class List {
     static POST_PER_PAGE = 10;
 
     constructor() {
-        //this.util = new Util();
         this.sort = Util.getParameters().sort;
         this.page = Util.getParameters().page;
 
@@ -16,7 +15,8 @@ class List {
         this.selectedNewSortCategory();
         this.selectedTopSortCategory();
         
-        Util.request("/api/count", (result) => {
+        console.log(Util);
+        Util.request("/api/count", "GET", "", (result) => {
             console.log(result, this);
             this.drawPageButton(result);
             this.updateList();
@@ -24,7 +24,7 @@ class List {
     }
     
     updateList() {
-        Util.request("/api/list?limit=" + List.POST_PER_PAGE + "&offset=" + (this.page - 1) * List.POST_PER_PAGE + "&sort=" + this.sort, (posts) => {
+        Util.request("/api/list?limit=" + List.POST_PER_PAGE + "&offset=" + (this.page - 1) * List.POST_PER_PAGE + "&sort=" + this.sort, "GET", "", (posts) => {
             this.drawPosts(posts);
             this.bindEvents();
         });
