@@ -26,13 +26,13 @@ function bindEvents() {
         if(checkValidation(title, contents)) {
             if(id) {
                 request("/api/edit", "id=" + id + "&category=" + category + "&title=" + encodeURIComponent(title) +"&link=" + link + "&contents=" + encodeURIComponent(contents), (json) => {
-                    if(json.success) location.href = "contents.html?id=" + id;
+                    if(json.success) location.href = "/contents?id=" + id;
                     else alert("글 수정에 실패하였습니다.");
                 });
             }
             else {
                 request("/api/write", "category=" + category + "&title=" + encodeURIComponent(title) +"&link=" + link + "&contents=" + encodeURIComponent(contents), (json) => {
-                    if(json.success) location.href = "list.html?sort=new&page=1";
+                    if(json.success) location.href = "/?sort=new&page=1";
                     else alert("새 글 작성에 실패하였습니다.");
                 });
             }

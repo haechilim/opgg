@@ -24,23 +24,23 @@ function updateList() {
 
 function bindEvents() {
     document.getElementById("writeButton").addEventListener("click", () => {
-        location.href = "write.html";
+        location.href = "/write";
     });
 
     document.getElementById("new").addEventListener("click", () => {
-        location.href = "list.html?sort=new&page=1";
+        location.href = "/?sort=new&page=1";
     });
 
     document.getElementById("top").addEventListener("click", () => {
-        location.href = "list.html?sort=top&page=1";
+        location.href = "/?sort=top&page=1";
     });
 
     document.getElementById("pageBefore").addEventListener("click", () => {
-        location.href = "/list.html?sort=" + sort + "&page=" + (parseInt(getParameters().page) - 1);
+        location.href = "/?sort=" + sort + "&page=" + (parseInt(getParameters().page) - 1);
     });
 
     document.getElementById("pageNext").addEventListener("click", () => {
-        location.href = "/list.html?sort=" + sort + "&page=" + (parseInt(getParameters().page) + 1);
+        location.href = "/?sort=" + sort + "&page=" + (parseInt(getParameters().page) + 1);
     });
 }
 
@@ -67,7 +67,7 @@ function drawPageButton(count) {
     for(let i = 1; i <= pageCount; i++) {
         let isCurrentPage = (i == currentPage);
 
-        html += "<button class=\"pageButton " + (isCurrentPage ? "currentPage" : "") + "\" >" + (isCurrentPage ? i : "<a href=\"list.html?sort=" + sort + "&page=" + i + "\">" + i + "</a>") + "</button>";
+        html += "<button class=\"pageButton " + (isCurrentPage ? "currentPage" : "") + "\" >" + (isCurrentPage ? i : "<a href=\"?sort=" + sort + "&page=" + i + "\">" + i + "</a>") + "</button>";
     }
 
     document.getElementById("pageButtonContainer").innerHTML = html;
@@ -106,7 +106,7 @@ function getPostHtml(post) {
     "\n" +
     "            <div class=\"postInformation\">\n" +
     "                <div class=\"titleContainer\">\n" +
-    "                    <div class=\"title\"><a href=\"contents.html?id=" + post.id + "\">" + post.title + "</a></div>\n" +
+    "                    <div class=\"title\"><a href=\"contents?id=" + post.id + "\">" + post.title + "</a></div>\n" +
     "                    <div class=\"comment\">[" + post.ccount + "]</div>\n" +
     "                </div>\n" +
     "\n" +

@@ -19,7 +19,7 @@ function bindEvents() {
         resizeContentsContainer();
     });
 
-    document.getElementById("editButton").addEventListener("click", () => location.href = "write.html?id=" + getParameters().id);
+    document.getElementById("editButton").addEventListener("click", () => location.href = "/write?id=" + getParameters().id);
 }
 
 function resizeContentsContainer() {

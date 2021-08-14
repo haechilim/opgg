@@ -57,8 +57,24 @@ class Server {
                 break;
 
             default:
-                this.fileResponse(response, pathname);
+                this.fileResponse(response, this.mapUrl(pathname));
                 break;
+        }
+    }
+
+    mapUrl(pathname) {
+        switch(pathname) {
+            case "/":
+                return "list.html";
+
+            case "/write":
+                return "write.html";
+
+            case "/contents":
+                return "contents.html";
+            
+            default:
+                return pathname;
         }
     }
 
