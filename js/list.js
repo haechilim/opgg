@@ -1,9 +1,12 @@
+import Util from "./util.js";
+
 class List {
     static POST_PER_PAGE = 10;
 
     constructor() {
-        this.sort = this.getParameters().sort;
-        this.page = this.getParameters().page;
+        //this.util = new Util();
+        this.sort = Util.getParameters().sort;
+        this.page = Util.getParameters().page;
 
         if(this.sort == undefined) this.sort = "new";
         if(this.page == undefined) this.page = "1";
@@ -13,15 +16,15 @@ class List {
         this.selectedNewSortCategory();
         this.selectedTopSortCategory();
         
-        this.request("/api/count", (result) => {
+        Util.request("/api/count", (result) => {
             console.log(result, this);
-            this.drawPageButton(result[0].count);
+            this.drawPageButton(result);
             this.updateList();
         });
     }
     
     updateList() {
-        this.request("/api/list?limit=" + List.POST_PER_PAGE + "&offset=" + (this.page - 1) * List.POST_PER_PAGE + "&sort=" + this.sort, (posts) => {
+        Util.request("/api/list?limit=" + List.POST_PER_PAGE + "&offset=" + (this.page - 1) * List.POST_PER_PAGE + "&sort=" + this.sort, (posts) => {
             this.drawPosts(posts);
             this.bindEvents();
         });
@@ -49,19 +52,7 @@ class List {
         });
     }
     
-    request(url, callback) {
-        let xmlHttpRequest = new XMLHttpRequest();
-    
-        xmlHttpRequest.addEventListener("load", () => {
-            let json = JSON.parse(xmlHttpRequest.responseText);
-            
-            if(callback) callback(json);
-        });
-    
-        xmlHttpRequest.open("GET", url, true);
-        xmlHttpRequest.send();
-    }
-    
+
     drawPageButton(count) {
         const pageCount = this.getPageCount(count);
         const currentPage = this.page;
@@ -128,28 +119,6 @@ class List {
     
     getPageCount(postCount) {
         return Math.ceil(postCount / List.POST_PER_PAGE);
-    }
-    
-    getParameters() {
-        let result = {};
-        let part = parameterPart();
-        let parameters = part.split("&");
-        
-        for(let i = 0; i < parameters.length; i++) {
-            let tokens = parameters[i].split("=");
-            
-            if(tokens.length < 2) continue;
-            
-            result[tokens[0]] = tokens[1];
-        }
-        
-        return result;
-        
-        function parameterPart() {
-            let tokens = location.search.split("?");
-            
-            return tokens.length > 1 ? tokens[1] : "";
-        }
     }
     
     selectedNewSortCategory() {

@@ -64,7 +64,7 @@ class DatabaseManager {
     }
 
     getPostsCount(callback) {
-        this.query('select count(*) as count from opgg.post;', callback);
+        this.query('select count(*) as count from opgg.post;', (error, result) => callback(error, error == undefined ? result[0].count : 0));
     }
 
     writePost(title, contents, category, callback) {
