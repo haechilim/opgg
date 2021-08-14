@@ -15,49 +15,56 @@ class Server {
             console.log(request.url);
 
             let pathname = this.getPathname(request.url);
-            let parameter = this.getParameters(request.url);
-            let post = "";
+            let parameters = this.getParameters(request.url);
+            
+            if(request.method == "POST") {
+                let post = "";
 
-            request.on("data", (data) => post += data);
-            request.on("end", () => {
-                console.log(post);
-                const data = this.getParameters("?" + post);
-
-                let title = decodeURIComponent(data.title);
-                let contents = decodeURIComponent(data.contents);
-
-                if(pathname == "/write") {
-                    this.databaseManager.writePost(title, contents, data.category, (error) => {
-                        error ? console.log(error) : this.jsonResponse(response, {success: (error ? false : true)});
-                    });
-                }
-                else if(pathname == "/edit") {
-                    this.databaseManager.editPost(data.id, title, contents, data.category, (error) => {
-                        error ? console.log(error) : this.jsonResponse(response, {success: (error ? false : true)});
-                    });
-                }
-            });
-
-            switch(pathname) {
-                case "/list":
-                    this.databaseManager.getPosts(parameter.limit, parameter.offset, parameter.sort, (error, result) => error ? console.log(error) : this.jsonResponse(response, result));
-                    break;
-
-                case "/count":
-                    this.databaseManager.getPostsCount((error, result) => error ? console.log(error) : this.jsonResponse(response, result));
-
-                case "/contents":
-                    this.databaseManager.getPost(parameter.id, (error, result) => error ? console.log(error) : this.jsonResponse(response, result));
-                    break;
-
-                default:
-                    if(pathname == "/write" || pathname == "/edit") break;
-                    this.pageResponse(response, pathname);
-                    break;
+                request.on("data", (data) => post += data);
+                request.on("end", () => this.processUrl(pathname, this.getParameters("?" + post), response));
             }
+            else this.processUrl(pathname, parameters, response);
+
         }).listen(7000);
 
         console.log("server start!");
+    }
+
+    processUrl(pathname, data, response) {
+        switch(pathname) {
+            case "/list":
+                this.databaseManager.getPosts(data.limit, data.offset, data.sort, (error, result) => this.response(response, error, result));
+                break;
+
+            case "/count":
+                this.databaseManager.getPostsCount((error, result) => this.response(response, error, result));
+                break
+
+            case "/contents":
+                this.databaseManager.getPost(data.id, (error, result) => this.response(response, error, result));
+                break;
+
+            case "/write":
+            case "/edit":
+                {
+                    let title = decodeURIComponent(data.title);
+                    let contents = decodeURIComponent(data.contents);
+                    
+
+                    if(pathname == "/write") this.databaseManager.writePost(title, contents, data.category, error => this.response(response, error));
+                    else this.databaseManager.editPost(data.id, title, contents, data.category, error => this.response(response, error));
+                }
+                break;
+
+            default:
+                this.fileResponse(response, pathname);
+                break;
+        }
+    }
+
+    response(response, error, result) {
+        if(result == undefined) result = {success: (error ? false : true)};
+        error ? console.log(error) : this.jsonResponse(response, result);
     }
 
     jsonResponse(response, data) {
@@ -67,7 +74,7 @@ class Server {
         }
     }
 
-    pageResponse(response, pathname) {
+    fileResponse(response, pathname) {
         response.writeHead(200, {'Content-Type': mime.getType(pathname)});
 
         fs.readFile("./" + pathname, (err, data) => {
