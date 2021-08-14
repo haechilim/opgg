@@ -7,7 +7,7 @@ function init() {
 }
 
 function updateContents() {
-    request("/contents?id=" + getParameters().id, (contents) => {
+    request("/api/contents?id=" + getParameters().id, (contents) => {
         drawContents(contents[0]);
         resizeContentsContainer();
         bindEvents();

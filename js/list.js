@@ -9,14 +9,14 @@ function init() {
     selectedNewSortCategory(sort);
     selectedTopSortCategory(sort);
 
-    request("/count", (result) => {
+    request("/api/count", (result) => {
         drawPageButton(result[0].count);
         updateList();
     });
 }
 
 function updateList() {
-    request("/list?limit=" + POST_PER_PAGE + "&offset=" + (getParameters().page - 1) * POST_PER_PAGE + "&sort=" + getParameters().sort, (posts) => {
+    request("/api/list?limit=" + POST_PER_PAGE + "&offset=" + (getParameters().page - 1) * POST_PER_PAGE + "&sort=" + getParameters().sort, (posts) => {
         drawPosts(posts);
         bindEvents();
     });

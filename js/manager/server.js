@@ -32,26 +32,26 @@ class Server {
 
     processUrl(pathname, data, response) {
         switch(pathname) {
-            case "/list":
+            case "/api/list":
                 this.databaseManager.getPosts(data.limit, data.offset, data.sort, (error, result) => this.response(response, error, result));
                 break;
 
-            case "/count":
+            case "/api/count":
                 this.databaseManager.getPostsCount((error, result) => this.response(response, error, result));
                 break
 
-            case "/contents":
+            case "/api/contents":
                 this.databaseManager.getPost(data.id, (error, result) => this.response(response, error, result));
                 break;
 
-            case "/write":
-            case "/edit":
+            case "/api/write":
+            case "/api/edit":
                 {
                     let title = decodeURIComponent(data.title);
                     let contents = decodeURIComponent(data.contents);
                     
 
-                    if(pathname == "/write") this.databaseManager.writePost(title, contents, data.category, error => this.response(response, error));
+                    if(pathname == "/api/write") this.databaseManager.writePost(title, contents, data.category, error => this.response(response, error));
                     else this.databaseManager.editPost(data.id, title, contents, data.category, error => this.response(response, error));
                 }
                 break;

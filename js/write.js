@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function init() {
     if(getParameters().id) {
-        request("/contents?id=" + getParameters().id, "", (contents) => {
+        request("/api/contents?id=" + getParameters().id, "", (contents) => {
             redrawPage(contents[0]);
         });
     }
@@ -25,13 +25,13 @@ function bindEvents() {
 
         if(checkValidation(title, contents)) {
             if(id) {
-                request("/edit", "id=" + id + "&category=" + category + "&title=" + encodeURIComponent(title) +"&link=" + link + "&contents=" + encodeURIComponent(contents), (json) => {
+                request("/api/edit", "id=" + id + "&category=" + category + "&title=" + encodeURIComponent(title) +"&link=" + link + "&contents=" + encodeURIComponent(contents), (json) => {
                     if(json.success) location.href = "contents.html?id=" + id;
                     else alert("글 수정에 실패하였습니다.");
                 });
             }
             else {
-                request("/write", "category=" + category + "&title=" + encodeURIComponent(title) +"&link=" + link + "&contents=" + encodeURIComponent(contents), (json) => {
+                request("/api/write", "category=" + category + "&title=" + encodeURIComponent(title) +"&link=" + link + "&contents=" + encodeURIComponent(contents), (json) => {
                     if(json.success) location.href = "list.html?sort=new&page=1";
                     else alert("새 글 작성에 실패하였습니다.");
                 });
