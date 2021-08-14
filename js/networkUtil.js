@@ -1,4 +1,4 @@
-class Util {
+class NetworkUtil {
     constructor() {}
 
     static request(url, method, send, callback) {
@@ -37,4 +37,4 @@ class Util {
     }
 }
 
-export default Util;
+export default NetworkUtil;

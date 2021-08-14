@@ -1,4 +1,4 @@
-import Util from "./util.js";
+import Util from "./networkUtil.js";
 
 class Write {
     constructor() {
@@ -6,11 +6,7 @@ class Write {
     }
 
     init() {
-        if(this.id) {
-            Util.request("/api/contents?id=" + this.id, "GET", "", (contents) => {
-                this.redrawPage(contents[0]);
-            });
-        }
+        this.requestContents();
         this.bindEvents();
     }
     
@@ -40,6 +36,14 @@ class Write {
                 }
             }
         });
+    }
+
+    requestContents() {
+        if(this.id) {
+            Util.request("/api/contents?id=" + this.id, "GET", "", (contents) => {
+                this.redrawPage(contents);
+            });
+        }
     }
     
     redrawPage(contents) {

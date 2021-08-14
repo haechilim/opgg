@@ -1,4 +1,4 @@
-import Util from "./util.js";
+import Util from "./networkUtil.js";
 
 class List {
     static POST_PER_PAGE = 10;

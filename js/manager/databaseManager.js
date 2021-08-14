@@ -60,7 +60,7 @@ class DatabaseManager {
         "on p.category = c.id " +
         "where p.id = " + postId + ";"
 
-        this.query(query, callback);
+        this.query(query, (error, result) => callback(error, result[0]));
     }
 
     getPostsCount(callback) {
