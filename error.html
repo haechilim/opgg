@@ -13,6 +13,7 @@
         body {
             height: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
         }
@@ -21,13 +22,23 @@
             font-size: 3rem;
             font-weight: bold;
         }
+
+        #back {
+            width: 9rem;
+            height: 3.5rem;
+            background-color: #ffffff;
+            color: #7b858e;
+            border: #bdbdbd solid 0.1rem;
+        }
     </style>
 
     <script>
-        location.href = "main.html?sort=new&page=1";
     </script>
 </head>
 <body>
-    <div>ERROR: 새 글을 작성할 수 없습니다.</div>
+    <div class="text">ERROR: 새 글을 작성할 수 없습니다.</div>
+    <div>
+        <button id="back">이전으로 돌아가기</button>
+    </div>
 </body>
 </html>

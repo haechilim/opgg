@@ -72,6 +72,10 @@ class DatabaseManager {
 
         this.query(query, callback);
     }
+
+    editPost(postId, title, contents, category, callback) {
+        this.query('update opgg.post set title = "' + title + '", contents = "' + contents + '", category = ' + category + ' where id = ' + postId + ';', callback);
+    }
     
     getComments(postId, callback) {
         const query = "select c.id, c.postId, c.parentId, c.contents, c.like, c.dislike, c.dateTime, m.name, m.level, c.warned " +
@@ -81,10 +85,6 @@ class DatabaseManager {
         "where c.postId = " + postId + ";";
 
         this.query(query, callback);
-    }
-
-    updatePost(postId, title, contents, callback) {
-        this.query('update opgg.post set title = "' + title + '", contents = "' + contents + '" where id = ' + postId + ';', callback);
     }
     
     like(postId, callback) {

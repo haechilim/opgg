@@ -10,57 +10,55 @@
     <script src="js/write.js"></script>
 </head>
 <body>
-    <form action="/write" method="post" class="body">
-        <div class="container">
-            <h1 class="text">글쓰기</h1>
+    <div class="container">
+        <h1 id="text" class="text">글 쓰기</h1>
 
-            <select name="category" id="postType" class="postType">
-                <option value="1">OP.GG 기획</option>
-                <option value="2">유저 뉴스</option>
-                <option value="3">팁과 노하우</option>
-                <option value="4">자유</option>
-                <option value="5">유머</option>
-                <option value="6">영상</option>
-                <option value="7">유저 찾기</option>
-                <option value="8">사건 사고</option>
-                <option value="9">팬 아트</option>
-            </select>
+        <select name="category" id="category" class="postType">
+            <option value="1">OP.GG 기획</option>
+            <option value="2">유저 뉴스</option>
+            <option value="3">팁과 노하우</option>
+            <option value="4">자유</option>
+            <option value="5">유머</option>
+            <option value="6">영상</option>
+            <option value="7">유저 찾기</option>
+            <option value="8">사건 사고</option>
+            <option value="9">팬 아트</option>
+        </select>
 
-            <input id="title" class="inputTitle" type="text" name ="title" placeholder="제목">
-            <input name="link" class="inputLink" type="text" placeholder="동영상 또는 사이트 링크를 입력해주세요. (선택)">
-            <div class="contentsContainer">
-                <div class="toolbar">
-                    <button class="title"></button>
-                    <button class="weight"></button>
-                    <button class="italic"></button>
-                    <button class="color"></button>
-                    <button class="strike"></button>
-                    <button class="hrline"></button>
-                    <button class="quote"></button>
-                    <button class="ul"></button>
-                    <button class="ol"></button>
-                    <button class="checkbox"></button>
-                    <button class="indent"></button>
-                    <button class="outdent"></button>
-                    <button class="table"></button>
-                    <button class="image"></button>
-                    <button class="link"></button>
-                    <button class="code"></button>
-                    <button class="codeblock"></button >
-                </div>
-                <textarea name="contents" id="contents" class="contents"></textarea>
+        <input id="title" class="inputTitle" type="text" name ="title" placeholder="제목">
+        <input id="link" name="link" class="inputLink" type="text" placeholder="동영상 또는 사이트 링크를 입력해주세요. (선택)">
+        <div class="contentsContainer">
+            <div class="toolbar">
+                <button class="title"></button>
+                <button class="weight"></button>
+                <button class="italic"></button>
+                <button class="color"></button>
+                <button class="strike"></button>
+                <button class="hrline"></button>
+                <button class="quote"></button>
+                <button class="ul"></button>
+                <button class="ol"></button>
+                <button class="checkbox"></button>
+                <button class="indent"></button>
+                <button class="outdent"></button>
+                <button class="table"></button>
+                <button class="image"></button>
+                <button class="link"></button>
+                <button class="code"></button>
+                <button class="codeblock"></button >
             </div>
-
-            <div class="previewOptionContainer">
-                <img class="checkBox" src="image/checkBox.png"></img>
-                <div>이미지(Thumbnail) 미리보기 허용</div>
-            </div>
+            <textarea name="contents" id="contents" class="contents"></textarea>
         </div>
 
-        <div class="buttonContainer">
-            <button type="button" id="cencle" class="cencle">취소</button>
-            <button type="submit" id="write" class="write">작성완료</button>
+        <div class="previewOptionContainer">
+            <img class="checkBox" src="image/checkBox.png"></img>
+            <div>이미지(Thumbnail) 미리보기 허용</div>
         </div>
-    </form>
+    </div>
+
+    <div class="buttonContainer">
+        <button type="button" id="cencle" class="cencle">취소</button>
+        <button type="submit" id="write" class="write">작성완료</button>
+    </div>
 </body>
 </html>

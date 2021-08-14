@@ -4,14 +4,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function init() {
     updateContents();
-    bindEvents();
 }
 
 function updateContents() {
     request("/contents?id=" + getParameters().id, (contents) => {
-        console.log(contents[0]);
         drawContents(contents[0]);
         resizeContentsContainer();
+        bindEvents();
     });
 }
 
@@ -19,6 +18,8 @@ function bindEvents() {
     window.addEventListener("resize", () => {
         resizeContentsContainer();
     });
+
+    document.getElementById("editButton").addEventListener("click", () => location.href = "write.html?id=" + getParameters().id);
 }
 
 function resizeContentsContainer() {
@@ -42,8 +43,17 @@ function request(url, callback) {
 }
 
 function drawContents(contents) {
+    contents.contents = contents.contents.replace(/\n/gi, "<br>");
+    contents.contents = contents.contents.replace(/ /gi, "&nbsp;");
+
     document.querySelector(".mainContainer").innerHTML = "<div class=\"topContainer\">\n" +
+    "        <div class=\"titleBar\">" +
     "            <h2 class=\"title\">" + contents.title + "</h2>\n" +
+    "            <div>\n" +
+    "                <button id=\"editButton\" class=\"editButton\">수정</button>\n" +
+    "                <button id=\"deleteButton\" class=\"deleteButton\">삭제</button>\n" +
+    "            </div>\n" +
+    "        </div>" +
     "\n" +
     "            <div class=\"postInfomationContainer\">\n" +
     "                <ul class=\"infomations\">\n" +
@@ -63,7 +73,7 @@ function drawContents(contents) {
     "            </div>\n" +
     "        </div>\n" +
     "\n" +
-    "        <textarea readonly id=\"contentsContainer\" class=\"contentsContainer\">" + contents.contents + "</textarea>\n" +
+    "        <p readonly id=\"contentsContainer\" class=\"contentsContainer\">" + contents.contents + "</p>\n" +
     "\n" +
     "        <div class=\"recommendationContainer\">\n" +
     "            <button class=\"recommendation\">" + contents.like + "</button>\n" +

@@ -12,7 +12,13 @@
 <body>
     <div class="mainContainer">
         <div class="topContainer">
-            <h2 class="title">병원인데</h2>
+            <div class="titleBar">
+                <h2 class="title">병원인데</h2>
+                <div>
+                    <button id="editButton" class="editButton">수정</button>
+                    <button id="deleteButton" class="deleteButton">삭제</button>
+                </div>
+            </div>
 
             <div class="postInfomationContainer">
                 <ul class="infomations">
@@ -32,7 +38,7 @@
             </div>
         </div>
 
-        <textarea id="contentsContainer" class="contentsContainer"></textarea>
+        <div id="contentsContainer" class="contentsContainer"></div>
 
         <div class="recommendationContainer">
             <button class="recommendation">2267</button>

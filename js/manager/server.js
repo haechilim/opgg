@@ -16,6 +16,27 @@ class Server {
 
             let pathname = this.getPathname(request.url);
             let parameter = this.getParameters(request.url);
+            let post = "";
+
+            request.on("data", (data) => post += data);
+            request.on("end", () => {
+                console.log(post);
+                const data = this.getParameters("?" + post);
+
+                let title = decodeURIComponent(data.title);
+                let contents = decodeURIComponent(data.contents);
+
+                if(pathname == "/write") {
+                    this.databaseManager.writePost(title, contents, data.category, (error) => {
+                        error ? console.log(error) : this.jsonResponse(response, {success: (error ? false : true)});
+                    });
+                }
+                else if(pathname == "/edit") {
+                    this.databaseManager.editPost(data.id, title, contents, data.category, (error) => {
+                        error ? console.log(error) : this.jsonResponse(response, {success: (error ? false : true)});
+                    });
+                }
+            });
 
             switch(pathname) {
                 case "/list":
@@ -29,25 +50,8 @@ class Server {
                     this.databaseManager.getPost(parameter.id, (error, result) => error ? console.log(error) : this.jsonResponse(response, result));
                     break;
 
-                case "/write":
-                    let post = "";
-
-                    request.on("data", (data) => post += data);
-
-                    request.on("end", () => {
-                        post = post.replace(/\+/gi, "%20");
-                        post = decodeURIComponent(post);
-                        const data = this.getParameters("?" + post);
-
-                        this.databaseManager.writePost(data.title, data.contents, data.category, (error) => {
-                            response.writeHead(200, {'Content-Type': 'text/html'});
-
-                            response.end(this.getErrorHtml(error));
-                        });
-                    });
-                    break;
-
                 default:
+                    if(pathname == "/write" || pathname == "/edit") break;
                     this.pageResponse(response, pathname);
                     break;
             }
