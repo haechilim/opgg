@@ -6,6 +6,7 @@ class Write {
     }
 
     init() {
+        this.requestCategory();
         this.requestContents();
         this.bindEvents();
     }
@@ -38,12 +39,30 @@ class Write {
         });
     }
 
+    requestCategory() {
+        Util.request("/api/category", "GET", "", (contents) => {
+            this.updateCategory(contents);
+        });
+    }
+
     requestContents() {
         if(this.id) {
             Util.request("/api/contents?id=" + this.id, "GET", "", (contents) => {
                 this.updatePage(contents);
             });
         }
+    }
+
+    updateCategory(contents) {
+        let html = "";
+
+        for(let i = 0; i < contents.length; i++) {
+            const content = contents[i];
+
+            html += "<option value='" + content.id + "'>" + content.name + "</option>";
+        }
+
+        document.querySelector("#category").innerHTML = html;
     }
     
     updatePage(contents) {

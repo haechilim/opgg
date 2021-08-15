@@ -32,6 +32,10 @@ class Server {
 
     processUrl(pathname, data, response) {
         switch(pathname) {
+            case "/api/category":
+                this.databaseManager.getCategories((error, result) => this.response(response, error, result));
+                break;
+
             case "/api/list":
                 this.databaseManager.getPosts(data.limit, data.offset, data.sort, (error, result) => this.response(response, error, result));
                 break;
