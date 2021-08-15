@@ -41,21 +41,16 @@ class Write {
     requestContents() {
         if(this.id) {
             Util.request("/api/contents?id=" + this.id, "GET", "", (contents) => {
-                this.redrawPage(contents);
+                this.updatePage(contents);
             });
         }
     }
     
-    redrawPage(contents) {
-        const category = [ "OP.GG 기획", "유저 뉴스", "팁과 노하우", "자유", "유머", "영상", "유저 찾기", "사건 사고", "팬 아트" ];
-        let value = 1;
-    
-        for(let i = 0; i < category.length; i++) {
-            if(category[i] == contents.category) value = i + 1;
-        }
+    updatePage(contents) {
+        console.log(contents);
     
         document.getElementById("text").innerHTML = "글 수정";
-        document.getElementById("category").value = value;
+        document.getElementById("category").value = contents.categoryId;
         document.getElementById("title").value = contents.title;
         document.getElementById("contents").value = contents.contents;
     }
@@ -69,7 +64,8 @@ class Write {
             alert("내용을 입력해주세요.");
             return false;
         }
-        else return true;
+        
+        return true;
     }
 }
 

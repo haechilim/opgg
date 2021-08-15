@@ -35,7 +35,7 @@ class DatabaseManager {
 
         const query = "select p.id, p.title, p.like, p.dislike, p.dateTime, " +
         "m.name as mname, m.level as mlevel, " +
-        "c.name as category, " +
+        "c.name as category, c.id as categoryId," +
         "(select count(*) from opgg.comment where postId=p.id) as ccount " +
         "from post as p " +
         "left join member as m " +
@@ -51,7 +51,7 @@ class DatabaseManager {
     getPost(postId, callback) {
         const query = "select p.title, p.contents, p.like, p.dislike, p.count, p.dateTime, " +
         "m.name as mname, m.level as mlevel, " +
-        "c.name as category, " +
+        "c.name as category, c.id as categoryId," +
         "(select count(*) from opgg.comment where postId=p.id) as ccount " +
         "from post as p " +
         "left join member as m " +

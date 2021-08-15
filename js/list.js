@@ -12,19 +12,21 @@ class List {
     }
 
     init() {
-        this.selectedNewSortCategory();
-        this.selectedTopSortCategory();
+        this.updateCategory();
         
         console.log(Util);
         Util.request("/api/count", "GET", "", (result) => {
             console.log(result, this);
-            this.drawPageButton(result);
+            this.updatePageButton(result);
             this.updateList();
         });
     }
     
     updateList() {
-        Util.request("/api/list?limit=" + List.POST_PER_PAGE + "&offset=" + (this.page - 1) * List.POST_PER_PAGE + "&sort=" + this.sort, "GET", "", (posts) => {
+        const limit = List.POST_PER_PAGE;
+        const offset = (this.page - 1) * List.POST_PER_PAGE;
+
+        Util.request("/api/list?limit=" + limit + "&offset=" + offset + "&sort=" + this.sort, "GET", "", (posts) => {
             this.drawPosts(posts);
             this.bindEvents();
         });
@@ -53,7 +55,7 @@ class List {
     }
     
 
-    drawPageButton(count) {
+    updatePageButton(count) {
         const pageCount = this.getPageCount(count);
         const currentPage = this.page;
     
@@ -61,8 +63,11 @@ class List {
     
         for(let i = 1; i <= pageCount; i++) {
             let isCurrentPage = (i == currentPage);
+
+            const classCurrentPage = (isCurrentPage ? "currentPage" : "");
+            const aTag = (isCurrentPage ? i : "<a href=\"?sort=" + this.sort + "&page=" + i + "\">" + i + "</a>")
     
-            html += "<button class=\"pageButton " + (isCurrentPage ? "currentPage" : "") + "\" >" + (isCurrentPage ? i : "<a href=\"?sort=" + this.sort + "&page=" + i + "\">" + i + "</a>") + "</button>";
+            html += "<button class=\"pageButton " + classCurrentPage + "\" >" + aTag + "</button>";
         }
     
         document.getElementById("pageButtonContainer").innerHTML = html;
@@ -89,7 +94,7 @@ class List {
             html += this.getPostHtml(posts[i]);
         }
     
-        document.querySelector(".list").innerHTML = html;
+        document.querySelector("#list").innerHTML = html;
     }   
     
     getPostHtml(post) {
@@ -120,12 +125,9 @@ class List {
     getPageCount(postCount) {
         return Math.ceil(postCount / List.POST_PER_PAGE);
     }
-    
-    selectedNewSortCategory() {
+
+    updateCategory() {
         document.getElementById("new").className = this.sort == "new" ? "newOn" : "new";
-    }
-    
-    selectedTopSortCategory() {
         document.getElementById("top").className = this.sort == "top" ? "topOn" : "top";
     }
 }
