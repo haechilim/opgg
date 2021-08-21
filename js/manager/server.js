@@ -48,15 +48,20 @@ class Server {
                 this.databaseManager.getPost(data.id, (error, result) => this.response(response, error, result));
                 break;
 
+            case "/api/comments":
+                this.databaseManager.getComments(data.id, (error, result) => this.response(response, error, result));
+                break;
+
+            case "/api/writeComment":
             case "/api/write":
             case "/api/edit":
                 {
                     let title = decodeURIComponent(data.title);
                     let contents = decodeURIComponent(data.contents);
                     
-
-                    if(pathname == "/api/write") this.databaseManager.writePost(title, contents, data.category, error => this.response(response, error));
-                    else this.databaseManager.editPost(data.id, title, contents, data.category, error => this.response(response, error));
+                    if(pathname == "/api/writeComment") this.databaseManager.addComment(data.id, contents, error => this.response(response, error));
+                    else if(pathname == "/api/write") this.databaseManager.writePost(title, contents, data.category, error => this.response(response, error));
+                    else if(pathname == "/api/edit") this.databaseManager.editPost(data.id, title, contents, data.category, error => this.response(response, error));
                 }
                 break;
 
