@@ -67,6 +67,10 @@ class DatabaseManager {
         this.query('select count(*) as count from opgg.post;', (error, result) => callback(error, error == undefined ? result[0].count : 0));
     }
 
+    getCommentsCount(id, callback) {
+        this.query("SELECT count(*) as count FROM opgg.comment where postId = " + id + ";", (error, result) => callback(error, error == undefined ? result[0].count : 0));
+    }
+
     writePost(title, contents, category, callback) {
         const query = "insert into opgg.post(title, contents, `like`, dislike, count, dateTime, member, category) values('" + title + "', '" + contents + "', 0, 0, 0, now(), 2, " + category + ");";
 

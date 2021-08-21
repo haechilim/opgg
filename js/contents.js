@@ -20,7 +20,10 @@ class Contents {
     }
 
     updateComments() {
-        NetworkUtil.request("/api/comments?id=" + this.id, "GET", "", comments => this.drawComments(comments));
+        NetworkUtil.request("/api/comments?id=" + this.id, "GET", "", comments => {
+            this.drawComments(comments);
+            this.updateCommentsCount();
+        });
     }
     
     bindEvents() {
@@ -125,6 +128,13 @@ class Contents {
         }
 
         document.querySelector(".commentContainer .comment").innerHTML = html;
+    }
+
+    updateCommentsCount() {
+        NetworkUtil.request("/api./commentsCount?id=" + this.id, "GET", "", count => {
+            document.querySelector(".infomations .comment").innerHTML = "댓글 " + count;
+            document.querySelector(".commentContainer .number").innerHTML = count;
+        });
     }
 
     numberFormat(number) {

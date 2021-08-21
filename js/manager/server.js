@@ -52,6 +52,10 @@ class Server {
                 this.databaseManager.getComments(data.id, (error, result) => this.response(response, error, result));
                 break;
 
+            case "/api./commentsCount":
+                this.databaseManager.getCommentsCount(data.id, (error, result) => this.response(response, error, result));
+                break;
+
             case "/api/writeComment":
             case "/api/write":
             case "/api/edit":
