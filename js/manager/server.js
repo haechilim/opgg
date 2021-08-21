@@ -49,10 +49,10 @@ class Server {
                 break;
 
             case "/api/comments":
-                this.databaseManager.getComments(data.id, (error, result) => this.response(response, error, result));
+                this.databaseManager.getComments(data.id, data.sort, (error, result) => this.response(response, error, result));
                 break;
 
-            case "/api./commentsCount":
+            case "/api/commentsCount":
                 this.databaseManager.getCommentsCount(data.id, (error, result) => this.response(response, error, result));
                 break;
 
@@ -97,7 +97,7 @@ class Server {
     }
 
     jsonResponse(response, data) {
-        if(data) {
+        if(data != undefined) {
             response.writeHead(200, {"content-type": "application/json; charset=utf-8"});
             response.end(JSON.stringify(data));
         }

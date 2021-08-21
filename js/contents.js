@@ -2,13 +2,16 @@ import NetworkUtil from "./networkUtil.js";
 
 class Contents {
     constructor() {
+        this.sort = "top";
         this.id = NetworkUtil.getParameters().id;
         this.comments = document.querySelector(".writeContainer .writeComments");
+        this.topButton = document.querySelector(".commentContainer .sortTypesContainer .top");
+        this.newButton = document.querySelector(".commentContainer .sortTypesContainer .new");
     };
 
     init() {
         this.updateContents();
-        this.updateComments();
+        this.updateSortButton();
     }
     
     updateContents() {
@@ -20,10 +23,24 @@ class Contents {
     }
 
     updateComments() {
-        NetworkUtil.request("/api/comments?id=" + this.id, "GET", "", comments => {
+        NetworkUtil.request("/api/comments?id=" + this.id + "&sort=" + this.sort, "GET", "", comments => {
             this.drawComments(comments);
             this.updateCommentsCount();
         });
+    }
+
+    updateSortButton() {
+        this.updateSortButtonColor();
+        this.updateComments();
+    }
+
+    updateSortButtonColor() {
+        const sortTop = this.sort == "top";
+
+        this.topButton.style.color = sortTop ? "#16ae81" : "#000000";
+        this.newButton.style.color = sortTop ? "#000000" : "#16ae81";
+        this.topButton.style.borderBottomColor = sortTop ? "#16ae81" : "#ffffff";
+        this.newButton.style.borderBottomColor = sortTop ? "#ffffff" : "#16ae81";
     }
     
     bindEvents() {
@@ -46,8 +63,18 @@ class Contents {
                 else alert("댓글 작성에 실패하였습니다.");
             });
         });
+
+        this.topButton.addEventListener("click", () => {
+            this.sort = "top";
+            this.updateSortButton();
+        });
+
+        this.newButton.addEventListener("click", () => {
+            this.sort = "new";
+            this.updateSortButton();
+        });
     }
-    
+
     resizeContentsContainer() {
         const contentsContainer = document.getElementById("contentsContainer");
     
@@ -131,7 +158,7 @@ class Contents {
     }
 
     updateCommentsCount() {
-        NetworkUtil.request("/api./commentsCount?id=" + this.id, "GET", "", count => {
+        NetworkUtil.request("/api/commentsCount?id=" + this.id, "GET", "", count => {
             document.querySelector(".infomations .comment").innerHTML = "댓글 " + count;
             document.querySelector(".commentContainer .number").innerHTML = count;
         });

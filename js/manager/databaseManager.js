@@ -81,12 +81,15 @@ class DatabaseManager {
         this.query('update opgg.post set title = "' + title + '", contents = "' + contents + '", category = ' + category + ' where id = ' + postId + ';', callback);
     }
     
-    getComments(postId, callback) {
+    getComments(postId, sort, callback) {
+        const sortQuery = sort == "top" ? "c.like - c.dislike" : "c.dateTime";
+
         const query = "select c.id, c.postId, c.parentId, c.contents, c.like, c.dislike, c.dateTime, m.name, m.level, c.warned " +
         "from comment as c " +
         "left join member as m " +
         "on c.member = m.id " +
-        "where c.postId = " + postId + ";";
+        "where c.postId = " + postId + " " +
+        "order by (" + sortQuery + ") desc;";
 
         this.query(query, callback);
     }

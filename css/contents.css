@@ -151,7 +151,9 @@ body {
     display: flex;
     flex-direction: column;
     width: 50%;
-    border: 0.1rem solid #ebeef1;   
+    border-left: 0.1rem solid #ebeef1;   
+    border-top: 0.1rem solid #ebeef1;   
+    border-right: 0.1rem solid #ebeef1;   
     margin-top: 2rem;
 }
 
@@ -265,7 +267,7 @@ body {
     border-bottom: 0.1rem solid #ebeef1;
 }
 
-.commentContainer .sortTypesContainer .popularity {
+.commentContainer .sortTypesContainer .top {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -275,9 +277,10 @@ body {
     border-bottom: 0.3rem solid #16ae81;
     border-top: 0.3rem solid #ffffff;
     margin-right: 1rem;
+    cursor: pointer;
 }
 
-.commentContainer .sortTypesContainer .last {
+.commentContainer .sortTypesContainer .new {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -287,12 +290,12 @@ body {
     border-bottom: 0.3rem solid #ffffff;
     border-top: 0.3rem solid #ffffff;
     margin-right: 1rem;
+    cursor: pointer;
 }
 
 .commentContainer .comment {
     display: flex;
     flex-direction: column;
-    border-bottom: 0.1rem solid #ebeef1;
 }
 
 .commentContainer .comment .mainComment {
