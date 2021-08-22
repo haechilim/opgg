@@ -112,7 +112,16 @@
             </div>
 
             <div class="commentInComment">
-                <div class="main">
+                <div class="writeContainer">
+                    <textarea class="writeComments" placeholder="주제와 무관한 댓글, 타인의 권리를 침해하거나 명예를 훼손하는 게시물은 별도의 통보 없이 제재를 받을 수 있습니다." maxlength="1000"></textarea>
+                    <div class="writeCommentsFooter">
+                        <label class="insertPhotoLabel" for="insertPhoto">사진</label>
+                        <input class="insertPhoto" type="file">
+                        <span class="length">(<span id="length">0</span>/1000)</span>
+                        <button id="write" class="write">작성</button>
+                    </div>
+                </div>
+                <!-- <div class="main">
                     <ul class="infomations">
                         <li class="writer paddingRight">
                             <img class="level" src="image/level.png">
@@ -125,7 +134,7 @@
                         <li class="declaration">신고</li>
                         <li class="writeCommentInComment">답글 쓰기</li>
                     </ul>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

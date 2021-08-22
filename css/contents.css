@@ -351,6 +351,7 @@ body {
 .footer .declaration {
     margin-right: 1rem;
     color: #98a0a7;
+    cursor: pointer;
 }
 
 .footer .writeCommentInComment {
@@ -360,6 +361,7 @@ body {
     background-position: 0.3rem 0.3rem;
     padding-left: 1.5rem;
     color: #98a0a7;
+    cursor: pointer;
 }
 
 .commentContainer .comment .commentInComment {

@@ -2,6 +2,7 @@ import NetworkUtil from "./networkUtil.js";
 
 class Contents {
     constructor() {
+        this.tag;
         this.sort = "top";
         this.id = NetworkUtil.getParameters().id;
         this.comments = document.querySelector(".writeContainer .writeComments");
@@ -80,6 +81,26 @@ class Contents {
             this.sort = "new";
             this.updateSortButton();
         });
+
+        document.querySelectorAll(".mainComment .footer .writeCommentInComment").forEach(element => {
+            element.addEventListener("click", () => {
+                let id = element.id;
+
+                if(this.tag !=  undefined) document.getElementById("writeContainer" + this.tag).innerHTML = "";
+
+                this.tag = id.substr(13, id.length);
+
+                document.getElementById("writeContainer" + this.tag).innerHTML = "<div class=\"writeContainer\">\n" +
+                    "   <textarea class=\"writeComments\" placeholder=\"주제와 무관한 댓글, 타인의 권리를 침해하거나 명예를 훼손하는 게시물은 별도의 통보 없이 제재를 받을 수 있습니다.\" maxlength=\"1000\"></textarea>\n" +
+                    "   <div class=\"writeCommentsFooter\">\n" +
+                    "       <label class=\"insertPhotoLabel\" for=\"insertPhoto\">사진</label>\n" +
+                    "       <input class=\"insertPhoto\" type=\"file\">\n" +
+                    "       <span class=\"length\">(<span id=\"length\">0</span>/1000)</span>\n" +
+                    "       <button id=\"write\" class=\"write\">작성</button>\n" +
+                    "   </div>\n" +
+                    "</div>";
+            });
+        });
     }
 
     resizeContentsContainer() {
@@ -127,6 +148,8 @@ class Contents {
         "            <button class=\"decommendation\">" + contents.dislike + "</button>\n" +
         "            <button class=\"ward\"></button>\n" +
         "        </div>";
+
+        this.bindEvents();
     }
 
     drawComments(comments) {
@@ -155,13 +178,16 @@ class Contents {
             "   <div class=\"contents\">" + comment.contents + "</div>\n" +
             "       <ul class=\"footer\">\n" +
             "           <li class=\"declaration\">신고</li>\n" +
-            "           <li class=\"writeCommentInComment\">답글 쓰기</li>\n" +
+            "           <li id=\"commentButton" + comment.id + "\" class=\"writeCommentInComment\">답글 쓰기</li>\n" +
             "       </ul>\n" +
             "   </div>\n" +
-            "</div>";
+            "</div>" +
+            "<div id=\"writeContainer" + comment.id + "\" class=\"commentInComment\"></div>";
         }
 
         document.querySelector(".commentContainer .comment").innerHTML = html;
+
+        this.bindEvents();
     }
 
     updateCommentsCount() {
