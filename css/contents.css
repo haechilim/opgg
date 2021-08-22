@@ -29,6 +29,7 @@ body {
     background-color: #ffffff;
     color: #46cfa7;
     border-radius: 10%;
+    cursor: pointer;
 }
 
 .mainContainer .topContainer .titleBar .deleteButton {
@@ -38,6 +39,7 @@ body {
     background-color: #ffffff;
     color: #df0a2e;
     border-radius: 10%;
+    cursor: pointer;
 }
 
 .mainContainer .topContainer .title {

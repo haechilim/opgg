@@ -48,7 +48,14 @@ class Contents {
             this.resizeContentsContainer();
         });
     
-        document.getElementById("editButton").addEventListener("click", () => location.href = "/write?id=" + this.id);
+        document.querySelector(".mainContainer .topContainer .titleBar #editButton").addEventListener("click", () => location.href = "/write?id=" + this.id);
+
+        document.querySelector(".mainContainer .topContainer .titleBar #deleteButton").addEventListener("click", () => {
+            NetworkUtil.request("/api/deletePost?id=" + this.id, "GET", "", (json) => {
+                if(json.success) location.href = "/?sort=new&page=1";
+                else alert("게시물 삭제에 실패하였습니다.");
+            });
+        });
 
         this.comments.addEventListener("keyup", () => {
             document.querySelector(".writeContainer #length").innerHTML = this.comments.value.length;

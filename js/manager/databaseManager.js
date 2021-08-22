@@ -112,6 +112,10 @@ class DatabaseManager {
         this.query(query, callback);
     }
 
+    deletePost(id, callback) {
+        this.query("delete from opgg.post where id = " + id + ";", (error, result) => callback(error, error == undefined ? result[0] : {}));
+    }
+
     getCategories(callback) {
         this.query('SELECT * FROM opgg.category;', callback);
     }

@@ -56,6 +56,10 @@ class Server {
                 this.databaseManager.getCommentsCount(data.id, (error, result) => this.response(response, error, result));
                 break;
 
+            case "/api/deletePost":
+                this.databaseManager.deletePost(data.id, (error, result) => this.response(response, error, result));
+                break
+
             case "/api/writeComment":
             case "/api/write":
             case "/api/edit":
