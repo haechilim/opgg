@@ -106,8 +106,8 @@ class DatabaseManager {
         this.query('update opgg.post set count = count + 1 where id = ' + postId + ';', callback);
     }
     
-    addComment(postId, contents, callback) {
-        const query = "insert into opgg.comment(postId, parentId, contents, `like`, dislike, dateTime, member, warned) values(" + postId + ", 0, '" + contents + "', 0, 0, now(), 1, 0);"
+    addComment(postId, parentId, contents, callback) {
+        const query = "insert into opgg.comment(postId, parentId, contents, `like`, dislike, dateTime, member, warned) values(" + postId + ", " + parentId + ", '" + contents + "', 0, 0, now(), 1, 0);"
 
         this.query(query, callback);
     }

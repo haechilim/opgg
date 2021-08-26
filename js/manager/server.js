@@ -61,13 +61,15 @@ class Server {
                 break
 
             case "/api/writeComment":
+            case "/api/writeCommentInComment":
             case "/api/write":
             case "/api/edit":
                 {
                     let title = decodeURIComponent(data.title);
                     let contents = decodeURIComponent(data.contents);
                     
-                    if(pathname == "/api/writeComment") this.databaseManager.addComment(data.id, contents, error => this.response(response, error));
+                    if(pathname == "/api/writeComment") this.databaseManager.addComment(data.id, 0, contents, error => this.response(response, error));
+                    else if(pathname == "/api/writeCommentInComment") this.databaseManager.addComment(data.id, data.parentId, contents, error => this.response(response, error));
                     else if(pathname == "/api/write") this.databaseManager.writePost(title, contents, data.category, error => this.response(response, error));
                     else if(pathname == "/api/edit") this.databaseManager.editPost(data.id, title, contents, data.category, error => this.response(response, error));
                 }

@@ -2,7 +2,7 @@ import NetworkUtil from "./networkUtil.js";
 
 class Contents {
     constructor() {
-        this.tag;
+        this.parentId;
         this.sort = "top";
         this.id = NetworkUtil.getParameters().id;
         this.comments = document.querySelector(".writeContainer .writeComments");
@@ -58,9 +58,7 @@ class Contents {
             });
         });
 
-        this.comments.addEventListener("keyup", () => {
-            document.querySelector(".writeContainer #length").innerHTML = this.comments.value.length;
-        });
+        this.comments.addEventListener("keyup", () => document.querySelector(".writeContainer #length").innerHTML = this.comments.value.length);
 
         document.querySelector(".writeContainer .writeCommentsFooter #write").addEventListener("click", () => {
             NetworkUtil.request("/api/writeComment", "POST", "id=" + this.id + "&contents=" + encodeURIComponent(this.comments.value), (json) => {
@@ -86,19 +84,33 @@ class Contents {
             element.addEventListener("click", () => {
                 let id = element.id;
 
-                if(this.tag !=  undefined) document.getElementById("writeContainer" + this.tag).innerHTML = "";
+                if(this.parentId != undefined) document.getElementById("writeContainer" + this.parentId).innerHTML = "";
 
-                this.tag = id.substr(13, id.length);
+                this.parentId = id.substr(13, id.length);
 
-                document.getElementById("writeContainer" + this.tag).innerHTML = "<div class=\"writeContainer\">\n" +
-                    "   <textarea class=\"writeComments\" placeholder=\"주제와 무관한 댓글, 타인의 권리를 침해하거나 명예를 훼손하는 게시물은 별도의 통보 없이 제재를 받을 수 있습니다.\" maxlength=\"1000\"></textarea>\n" +
-                    "   <div class=\"writeCommentsFooter\">\n" +
-                    "       <label class=\"insertPhotoLabel\" for=\"insertPhoto\">사진</label>\n" +
-                    "       <input class=\"insertPhoto\" type=\"file\">\n" +
-                    "       <span class=\"length\">(<span id=\"length\">0</span>/1000)</span>\n" +
-                    "       <button id=\"write\" class=\"write\">작성</button>\n" +
-                    "   </div>\n" +
-                    "</div>";
+                document.getElementById("writeContainer" + this.parentId).innerHTML = "<div class=\"writeContainer\">\n" +
+                "   <textarea id=\"writeComments" + this.parentId + "\" class=\"writeComments\" placeholder=\"주제와 무관한 댓글, 타인의 권리를 침해하거나 명예를 훼손하는 게시물은 별도의 통보 없이 제재를 받을 수 있습니다.\" maxlength=\"1000\"></textarea>\n" +
+                "   <div class=\"writeCommentsFooter\">\n" +
+                "       <label class=\"insertPhotoLabel\" for=\"insertPhoto\">사진</label>\n" +
+                "       <input class=\"insertPhoto\" type=\"file\">\n" +
+                "       <span class=\"length\">(<span id=\"length" + this.parentId + "\">0</span>/1000)</span>\n" +
+                "       <button id=\"write" + this.parentId + "\" class=\"write\">작성</button>\n" +
+                "   </div>\n" +
+                "</div>";
+
+                const comments = document.querySelector("#writeComments" + this.parentId);
+
+                comments.addEventListener("keyup", () => document.querySelector(".writeContainer #length" + this.parentId).innerHTML = comments.value.length);
+
+                document.querySelector(".writeCommentsFooter #write" + this.parentId).addEventListener("click", () => {
+                    NetworkUtil.request("/api/writeCommentInComment", "POST", "id=" + this.id + "&parentId=" + this.parentId + "&contents=" + encodeURIComponent(comments.value), (json) => {
+                        if(json.success) {
+                            comments.value = "";
+                            this.updateComments();
+                        }
+                        else alert("댓글 작성에 실패하였습니다.");
+                    });
+                });
             });
         });
     }
