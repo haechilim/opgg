@@ -303,7 +303,6 @@ body {
 .commentContainer .comment .mainComment {
     display: flex;
     flex-direction: row;
-    border-bottom: 0.1rem solid #ebeef1;
 }
 
 .commentContainer .comment .mainComment .recommendation {
@@ -366,6 +365,6 @@ body {
 
 .commentContainer .comment .commentInComment {
     background-color: #f8f9fa;
-    border-top: 0.1rem solid #ebeef1;
+    border-bottom: 0.1rem solid #ebeef1;
     padding-left: 7rem;
 }

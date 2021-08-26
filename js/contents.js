@@ -25,6 +25,7 @@ class Contents {
 
     updateComments() {
         NetworkUtil.request("/api/comments?id=" + this.id + "&sort=" + this.sort, "GET", "", comments => {
+            console.log(comments);
             this.drawComments(comments);
             this.updateCommentsCount();
         });
@@ -168,10 +169,12 @@ class Contents {
         let html = "";
         
         for(let i = 0; i < comments.length; i++) {
-            let comment = comments[i];
+            const comment = comments[i];
 
             comment.contents = comment.contents.replace(/\n/gi, "<br>");
             comment.contents = comment.contents.replace(/ /gi, "&nbsp;");
+
+            if(comment.parentId != 0) continue
 
             html += "<div class=\"mainComment\">\n" +
             "   <div class=\"recommendation\">\n" +
@@ -195,6 +198,29 @@ class Contents {
             "   </div>\n" +
             "</div>" +
             "<div id=\"writeContainer" + comment.id + "\" class=\"commentInComment\"></div>";
+
+            for(let j = 0; j < comments.length; j++) {
+                const commentInComment = comments[j];
+
+                if(commentInComment.parentId == comment.id) {
+                    html += "<div class=\"commentInComment\">\n" +
+                    "   <div class=\"main\">\n" +
+                    "       <ul class=\"infomations\">\n" +
+                    "           <li class=\"writer paddingRight\">\n" +
+                    "               <img class=\"level\" src=\"image/level.png\">\n" +
+                    "               <div class=\"name\">" + commentInComment.name + "</div>\n" +
+                    "           </li>\n" +
+                    "           <li class=\"time borderLeft paddingLeft\">" + commentInComment.dateTime + "</li>\n" +
+                    "       </ul>\n" +
+                    "       <div class=\"contents\">" + commentInComment.contents + "</div>\n" +
+                    "       <ul class=\"footer\">\n" +
+                    "           <li class=\"declaration\">신고</li>\n" +
+                    "           <li class=\"writeCommentInComment\">답글 쓰기</li>\n" +
+                    "       </ul>\n" +
+                    "   </div>\n" +
+                    "</div>";
+                }
+            }
         }
 
         document.querySelector(".commentContainer .comment").innerHTML = html;
