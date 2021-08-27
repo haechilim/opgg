@@ -23,8 +23,6 @@ class Contents {
     }
 
     updateComments() {
-        console.log("comments");
-
         NetworkUtil.request("/api/comments?id=" + this.id + "&sort=" + this.sort, "GET", "", comments => {
             this.drawComments(comments);
             this.updateCommentsCount();
@@ -56,6 +54,18 @@ class Contents {
             NetworkUtil.request("/api/deletePost?id=" + this.id, "GET", "", (json) => {
                 if(json.success) location.href = "/?sort=new&page=1";
                 else alert("게시물 삭제에 실패하였습니다.");
+            });
+        });
+
+        document.querySelector(".mainContainer .recommendationContainer .recommendation").addEventListener("click", () => {
+            NetworkUtil.request("/api/like?id=" + this.id, "GET", "", (json) => {
+                
+            });
+        });
+
+        document.querySelector(".mainContainer .recommendationContainer .decommendation").addEventListener("click", () => {
+            NetworkUtil.request("/api/dislike?id=" + this.id, "GET", "", (json) => {
+
             });
         });
 
