@@ -95,11 +95,11 @@ class DatabaseManager {
     }
     
     like(postId, callback) {
-        this.query('update opgg.post set `like` = `like` + 1 where id = ' + postId + ';', callback);
+        this.query('update opgg.post set `like` = `like` + 1 where id = ' + postId + ';', (error, result) => callback(error, error == undefined ? result[0] : {}));
     }
 
     dislike(postId, callback) {
-        this.query('update opgg.post set dislike = dislike + 1 where id = ' + postId + ';', callback);
+        this.query('update opgg.post set dislike = dislike + 1 where id = ' + postId + ';', (error, result) => callback(error, error == undefined ? result[0] : {}));
     }
     
     count(postId, callback) {

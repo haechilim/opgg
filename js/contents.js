@@ -59,13 +59,13 @@ class Contents {
 
         document.querySelector(".mainContainer .recommendationContainer .recommendation").addEventListener("click", () => {
             NetworkUtil.request("/api/like?id=" + this.id, "GET", "", (json) => {
-                
+                if(json.success) this.updateContents();
             });
         });
 
         document.querySelector(".mainContainer .recommendationContainer .decommendation").addEventListener("click", () => {
             NetworkUtil.request("/api/dislike?id=" + this.id, "GET", "", (json) => {
-
+                if(json.success) this.updateContents();
             });
         });
 
@@ -122,7 +122,7 @@ class Contents {
 
                 document.querySelector(".writeCommentsFooter #write" + this.parentId).addEventListener("click", () => {
                     if(comments.value == "") {
-                        alert("내용이 비어있습니다.")
+                        alert("내용이 비어있습니다.");
                         return;
                     }
 
