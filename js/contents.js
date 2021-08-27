@@ -19,13 +19,13 @@ class Contents {
         NetworkUtil.request("/api/contents?id=" + this.id, "GET", "", (contents) => {
             this.drawContents(contents);
             this.resizeContentsContainer();
-            this.bindEvents();
         });
     }
 
     updateComments() {
+        console.log("comments");
+
         NetworkUtil.request("/api/comments?id=" + this.id + "&sort=" + this.sort, "GET", "", comments => {
-            console.log(comments);
             this.drawComments(comments);
             this.updateCommentsCount();
         });
@@ -62,6 +62,11 @@ class Contents {
         this.comments.addEventListener("keyup", () => document.querySelector(".writeContainer #length").innerHTML = this.comments.value.length);
 
         document.querySelector(".writeContainer .writeCommentsFooter #write").addEventListener("click", () => {
+            if(this.comments.value == "") {
+                alert("내용이 비어있습니다.")
+                return;
+            }
+
             NetworkUtil.request("/api/writeComment", "POST", "id=" + this.id + "&contents=" + encodeURIComponent(this.comments.value), (json) => {
                 if(json.success) {
                     this.comments.value = "";
@@ -80,7 +85,9 @@ class Contents {
             this.sort = "new";
             this.updateSortButton();
         });
+    }
 
+    commentEvent() {
         document.querySelectorAll(".mainComment .footer .writeCommentInComment").forEach(element => {
             element.addEventListener("click", () => {
                 let id = element.id;
@@ -104,12 +111,17 @@ class Contents {
                 comments.addEventListener("keyup", () => document.querySelector(".writeContainer #length" + this.parentId).innerHTML = comments.value.length);
 
                 document.querySelector(".writeCommentsFooter #write" + this.parentId).addEventListener("click", () => {
+                    if(comments.value == "") {
+                        alert("내용이 비어있습니다.")
+                        return;
+                    }
+
                     NetworkUtil.request("/api/writeCommentInComment", "POST", "id=" + this.id + "&parentId=" + this.parentId + "&contents=" + encodeURIComponent(comments.value), (json) => {
                         if(json.success) {
                             comments.value = "";
                             this.updateComments();
                         }
-                        else alert("댓글 작성에 실패하였습니다.");
+                        else alert("대댓글 작성에 실패하였습니다.");
                     });
                 });
             });
@@ -215,7 +227,6 @@ class Contents {
                     "       <div class=\"contents\">" + commentInComment.contents + "</div>\n" +
                     "       <ul class=\"footer\">\n" +
                     "           <li class=\"declaration\">신고</li>\n" +
-                    "           <li class=\"writeCommentInComment\">답글 쓰기</li>\n" +
                     "       </ul>\n" +
                     "   </div>\n" +
                     "</div>";
@@ -225,7 +236,7 @@ class Contents {
 
         document.querySelector(".commentContainer .comment").innerHTML = html;
 
-        this.bindEvents();
+        this.commentEvent();
     }
 
     updateCommentsCount() {
